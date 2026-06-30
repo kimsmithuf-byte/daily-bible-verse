@@ -1,149 +1,156 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Faith Widget</title>
 
-<title>Daily Bible Verse</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&display=swap" rel="stylesheet">
 
 <style>
-
 body{
 margin:0;
-display:flex;
-justify-content:center;
-align-items:center;
 height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
 background:#2B2B2B;
 font-family:'Cormorant Garamond',serif;
+overflow:hidden;
 }
 
 .card{
-width:320px;
-padding:25px;
-border-radius:20px;
-background:#2B2B2B;
+width:360px;
+padding:26px;
+border-radius:24px;
+background:rgba(43,43,43,.72);
 border:2px solid #FA66FF;
-box-shadow:0 0 20px rgba(250,102,255,.35);
+box-shadow:0 0 25px #FA66FF;
 text-align:center;
+color:white;
+animation:pulse 3s infinite ease-in-out;
+}
+
+@keyframes pulse{
+0%{box-shadow:0 0 16px #FA66FF;}
+50%{box-shadow:0 0 35px #FA66FF;}
+100%{box-shadow:0 0 16px #FA66FF;}
+}
+
+.date{
+color:#FA66FF;
+font-size:17px;
+letter-spacing:1px;
+margin-bottom:10px;
 }
 
 h1{
 color:#FA66FF;
-font-size:30px;
+font-size:31px;
 margin:0;
 }
 
-#line{
+.line{
 height:1px;
 background:#FA66FF;
-opacity:.4;
-margin:18px 0;
+opacity:.45;
+margin:17px 0;
 }
 
 #verse{
 font-size:22px;
-color:white;
 font-style:italic;
-line-height:1.5;
+line-height:1.45;
 }
 
 #reference{
-margin-top:18px;
+color:#FA66FF;
 font-size:18px;
+font-weight:bold;
+margin-top:14px;
+}
+
+.prayer{
+font-size:16px;
+line-height:1.4;
+margin-top:14px;
+color:#f8d6ff;
+}
+
+.affirmation{
+margin-top:15px;
+font-size:17px;
 color:#FA66FF;
 font-weight:bold;
 }
 
 .footer{
-margin-top:18px;
+margin-top:13px;
+font-size:13px;
 color:#FA66FF;
-font-size:14px;
-opacity:.7;
+opacity:.8;
 }
-
 </style>
 </head>
 
 <body>
 
 <div class="card">
+<div class="date" id="date"></div>
 
-<h1>✝ Daily Verse</h1>
+<h1>✝ Daily Faith</h1>
 
-<div id="line"></div>
+<div class="line"></div>
 
-<div id="verse">
-Loading...
-</div>
-
+<div id="verse"></div>
 <div id="reference"></div>
 
-<div id="line"></div>
+<div class="line"></div>
 
-<div class="footer">
-Walk by Faith 🌸
-</div>
+<div class="prayer" id="prayer"></div>
 
+<div class="affirmation" id="affirmation"></div>
+
+<div class="footer">Walk by Faith 🌸</div>
 </div>
 
 <script>
-
 const verses=[
-
-{
-text:"For I know the plans I have for you, declares the Lord, plans to prosper you and not to harm you, plans to give you hope and a future.",
-ref:"Jeremiah 29:11"
-},
-
-{
-text:"Trust in the Lord with all your heart and lean not on your own understanding.",
-ref:"Proverbs 3:5"
-},
-
-{
-text:"I can do all things through Christ who strengthens me.",
-ref:"Philippians 4:13"
-},
-
-{
-text:"Be strong and courageous. Do not be afraid; for the Lord your God will be with you wherever you go.",
-ref:"Joshua 1:9"
-},
-
-{
-text:"The Lord is my shepherd; I shall not want.",
-ref:"Psalm 23:1"
-},
-
-{
-text:"Cast all your anxiety on Him because He cares for you.",
-ref:"1 Peter 5:7"
-},
-
-{
-text:"Seek first the kingdom of God and His righteousness.",
-ref:"Matthew 6:33"
-},
-
-{
-text:"The joy of the Lord is your strength.",
-ref:"Nehemiah 8:10"
-}
-
+{text:"For I know the plans I have for you, declares the Lord, plans to prosper you and not to harm you, plans to give you hope and a future.",ref:"Jeremiah 29:11"},
+{text:"Trust in the Lord with all your heart and lean not on your own understanding.",ref:"Proverbs 3:5"},
+{text:"I can do all things through Christ who strengthens me.",ref:"Philippians 4:13"},
+{text:"Be strong and courageous. Do not be afraid; for the Lord your God will be with you wherever you go.",ref:"Joshua 1:9"},
+{text:"Cast all your anxiety on Him because He cares for you.",ref:"1 Peter 5:7"},
+{text:"The joy of the Lord is your strength.",ref:"Nehemiah 8:10"},
+{text:"She is clothed with strength and dignity, and she laughs without fear of the future.",ref:"Proverbs 31:25"},
+{text:"God is within her, she will not fall.",ref:"Psalm 46:5"},
+{text:"The Lord will fight for you; you need only to be still.",ref:"Exodus 14:14"},
+{text:"With God all things are possible.",ref:"Matthew 19:26"}
 ];
 
-const today=new Date().getDate();
+const prayers=[
+"Lord, guide my steps today and help me move with wisdom, peace, and courage. Amen.",
+"God, cover my family, my mind, my home, and my purpose today. Amen.",
+"Lord, help me trust Your timing and walk boldly in faith. Amen.",
+"God, give me discipline, clarity, and strength for everything You’ve called me to do. Amen."
+];
 
-const verse=verses[today%verses.length];
+const affirmations=[
+"I am walking in God’s purpose.",
+"I am covered, guided, and protected.",
+"My steps are ordered by God.",
+"I move with faith, peace, and power."
+];
 
-document.getElementById("verse").innerHTML='"'+verse.text+'"';
+const today=new Date();
+const day=today.getDate();
 
-document.getElementById("reference").innerHTML=verse.ref;
-
+document.getElementById("date").innerHTML=today.toLocaleDateString("en-US",{weekday:"long",month:"long",day:"numeric"});
+document.getElementById("verse").innerHTML='"'+verses[day%verses.length].text+'"';
+document.getElementById("reference").innerHTML=verses[day%verses.length].ref;
+document.getElementById("prayer").innerHTML=prayers[day%prayers.length];
+document.getElementById("affirmation").innerHTML=affirmations[day%affirmations.length];
 </script>
 
 </body>
 </html>
+Then click:
