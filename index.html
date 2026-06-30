@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Daily Bible Verse</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+background:#2B2B2B;
+font-family:'Cormorant Garamond',serif;
+}
+
+.card{
+width:320px;
+padding:25px;
+border-radius:20px;
+background:#2B2B2B;
+border:2px solid #FA66FF;
+box-shadow:0 0 20px rgba(250,102,255,.35);
+text-align:center;
+}
+
+h1{
+color:#FA66FF;
+font-size:30px;
+margin:0;
+}
+
+#line{
+height:1px;
+background:#FA66FF;
+opacity:.4;
+margin:18px 0;
+}
+
+#verse{
+font-size:22px;
+color:white;
+font-style:italic;
+line-height:1.5;
+}
+
+#reference{
+margin-top:18px;
+font-size:18px;
+color:#FA66FF;
+font-weight:bold;
+}
+
+.footer{
+margin-top:18px;
+color:#FA66FF;
+font-size:14px;
+opacity:.7;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>✝ Daily Verse</h1>
+
+<div id="line"></div>
+
+<div id="verse">
+Loading...
+</div>
+
+<div id="reference"></div>
+
+<div id="line"></div>
+
+<div class="footer">
+Walk by Faith 🌸
+</div>
+
+</div>
+
+<script>
+
+const verses=[
+
+{
+text:"For I know the plans I have for you, declares the Lord, plans to prosper you and not to harm you, plans to give you hope and a future.",
+ref:"Jeremiah 29:11"
+},
+
+{
+text:"Trust in the Lord with all your heart and lean not on your own understanding.",
+ref:"Proverbs 3:5"
+},
+
+{
+text:"I can do all things through Christ who strengthens me.",
+ref:"Philippians 4:13"
+},
+
+{
+text:"Be strong and courageous. Do not be afraid; for the Lord your God will be with you wherever you go.",
+ref:"Joshua 1:9"
+},
+
+{
+text:"The Lord is my shepherd; I shall not want.",
+ref:"Psalm 23:1"
+},
+
+{
+text:"Cast all your anxiety on Him because He cares for you.",
+ref:"1 Peter 5:7"
+},
+
+{
+text:"Seek first the kingdom of God and His righteousness.",
+ref:"Matthew 6:33"
+},
+
+{
+text:"The joy of the Lord is your strength.",
+ref:"Nehemiah 8:10"
+}
+
+];
+
+const today=new Date().getDate();
+
+const verse=verses[today%verses.length];
+
+document.getElementById("verse").innerHTML='"'+verse.text+'"';
+
+document.getElementById("reference").innerHTML=verse.ref;
+
+</script>
+
+</body>
+</html>
