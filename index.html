@@ -10,12 +10,12 @@ html, body {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: #090004;
+  background: #120006;
   font-family: Georgia, serif;
 }
 
 body {
-  background-image: url("daily-faith-background.png.png");
+  background-image: url("daily-faith-background.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -26,59 +26,62 @@ body {
   left: 50%;
   top: 48%;
   transform: translate(-50%, -50%);
-  width: 62%;
-  text-align: center;
+  width: 58%;
   color: #fff1e6;
+  text-align: center;
 }
 
 .cross {
-  font-size: 34px;
   color: #f4a6bd;
-  margin-bottom: 8px;
+  font-size: 26px;
+  margin-bottom: 4px;
 }
 
 .title {
-  font-size: 42px;
   color: #f4a6bd;
-  margin-bottom: 12px;
+  font-size: 34px;
+  font-weight: bold;
+  margin-bottom: 6px;
 }
 
 .date {
-  font-size: 18px;
   color: #f4a6bd;
-  margin-bottom: 28px;
+  font-size: 13px;
+  letter-spacing: 1px;
+  margin-bottom: 18px;
 }
 
 .verse {
-  font-size: 32px;
-  line-height: 1.35;
+  font-size: 22px;
+  line-height: 1.45;
   font-style: italic;
-  margin-bottom: 22px;
+  margin-bottom: 16px;
 }
 
 .reference {
-  font-size: 22px;
   color: #f4a6bd;
+  font-size: 17px;
   letter-spacing: 2px;
-  margin-bottom: 28px;
+  margin-bottom: 20px;
 }
 
 .section-title {
-  font-size: 20px;
   color: #f4a6bd;
-  margin-bottom: 10px;
+  font-size: 16px;
+  margin-bottom: 8px;
 }
 
-.prayer, .affirmation {
-  font-size: 21px;
+.prayer,
+.affirmation {
+  font-size: 15px;
   line-height: 1.45;
-  margin-bottom: 22px;
+  margin-bottom: 18px;
 }
 
 .divider {
   color: #f4a6bd;
-  font-size: 20px;
-  margin: 12px 0;
+  font-size: 16px;
+  margin: 10px 0;
 }
 </style>
 </head>
@@ -121,6 +124,7 @@ body {
 
 <script>
 const date = new Date();
+
 document.getElementById("date").textContent =
   date.toLocaleDateString("en-US", {
     weekday: "long",
